@@ -19,15 +19,15 @@ window.addEventListener('load', () => {
         },
       });
       
-      router.add('/', () => {
+      router.add('/invoicesTZ/public', () => {
         let html = mainTemplate();
         el.html(html);
       });
       
-    //   router.add('/exchange', () => {
-    //     let html = ratesTemplate();
-    //     el.html(html);
-    //   });
+      router.add('/exchange', () => {
+        let html = ratesTemplate();
+        el.html(html);
+      });
       
     //   router.add('/historical', () => {
     //     let html = historicalTemplate();
