@@ -1,0 +1,24 @@
+.container-fluid {
+    height: 100vh;
+    padding-top: 25px
+}
+.container{
+    margin-top: 25px;
+    padding: 20px 20px;
+}
+.header-line{display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-left: 5px solid rgb(182, 186, 193);
+    color: grey;
+}
+.horizontal{
+    width: 90%;
+    height: 2px;
+    background-color: rgb(182, 186, 193);
+}
+.btn a{
+    color: #fff;
+    text-decoration: none;
+}
