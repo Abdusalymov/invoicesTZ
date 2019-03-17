@@ -1,7 +1,6 @@
-
 function getInvoices() {
     $.ajax({
-        url: "/api/invoices",
+        url: "https://json-server-invoices.herokuapp.com/invoices",
         error: function(){
             // will fire when timeout is reached
         },
