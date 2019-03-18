@@ -2,7 +2,7 @@ function getInvoices() {
     $.ajax({
         url: "https://json-server-invoices.herokuapp.com/invoices",
         error: function(){
-            // will fire when timeout is reached
+            console.log('fail getinvoices');
         },
         success: function(data){
             $('#example').append(
@@ -18,10 +18,6 @@ function getInvoices() {
         },
     });
 }
-
-
 $(function() {
-    setTimeout(getInvoices, 0);
+    setTimeout(getInvoices, 1000);
 })
-
-
