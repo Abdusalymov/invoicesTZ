@@ -9,6 +9,7 @@ window.addEventListener('load', () => {
   
     const router = new Router({
         mode: 'history',
+        root: 'index.html',
         page404: (path) => {
           const html = errorTemplate({
             color: 'yellow',
