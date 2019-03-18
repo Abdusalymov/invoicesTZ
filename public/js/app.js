@@ -6,8 +6,8 @@ window.addEventListener('load', () => {
     const mainTemplate = Handlebars.compile($('#main-template').html());
   
     const router = new Router({
-        mode: 'history',
-        root: '/invoicesTZ',
+        mode: 'hash',
+        // root: '/index.htm',
         page404: (path) => {
           const html = errorTemplate({
             color: 'yellow',
