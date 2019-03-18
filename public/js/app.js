@@ -13,11 +13,11 @@ var router = new Router({
 router
         .add('', function () {
             console.log('Home page');
-            document.getElementById('title').innerHTML = "Home Page";
+            document.getElementById('app').innerHTML = "Home Page";
         })
         .add('search', function () {
             console.log('Search Page');
-            document.getElementById('title').innerHTML = 'Search for: ' + this.query.q;
+            document.getElementById('app').innerHTML = 'Search for: ' + this.query.q;
         }, {
             unloadCb: function (async) {
                 if (async){
@@ -29,11 +29,11 @@ router
         })
         .add('hello/(:any)', function (name) {
             console.log('Hello, ' + name, this.state);
-            document.getElementById('title').innerHTML = 'Hello, ' + name;
+            document.getElementById('app').innerHTML = 'Hello, ' + name;
         })
         .add('about', function () {
             console.log('About Page');
-            document.getElementById('title').innerHTML = 'About Page';
+            document.getElementById('app').innerHTML = 'About Page';
         })
         .remove('about')
         .check()
