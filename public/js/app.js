@@ -1,9 +1,3 @@
-    const el = $('#app');
-  
-    const errorTemplate = Handlebars.compile($('#error-template').html());
-    const ratesTemplate = Handlebars.compile($('#rates-template').html());
-    const mainTemplate = Handlebars.compile($('#main-template').html());
-
 var router = new Router({
     mode: 'hash',
     root: '/index.html',
@@ -12,66 +6,42 @@ var router = new Router({
             console.info('Before page loads hook', newPage);
         }
     },
-    page404: (path) => {
-        const html = errorTemplate({
-        color: 'yellow',
-        title: 'Error 404 - Page NOT Found!',
-        message: `The path '/${path}' does not exist on this site`,
-        });
-        el.html(html);
-    },
+    page404: function (path) {
+        console.log('"/' + path + '" Page not found');
+    }
 });
 router
-    .add('', function () {
-        let html = mainTemplate();
-        el.html(html);
-    })
-    .add('rates', function () {
-        let html = ratesTemplate();
-        el.html(html);
-    })
-    .add('search', function () {
-        console.log('Search Page');
-        document.getElementById('app').innerHTML = 'Search for: ' + this.query.q;
-    }, {
-        unloadCb: function (async) {
-            if (async){
-                console.warn("You have unsaved data!");
-                return confirm("You have unsaved data! Continue?");
+        .add('', function () {
+            console.log('Home page');
+            document.getElementById('title').innerHTML = "Home Page";
+        })
+        .add('search', function () {
+            console.log('Search Page');
+            document.getElementById('title').innerHTML = 'Search for: ' + this.query.q;
+        }, {
+            unloadCb: function (async) {
+                if (async){
+                    console.warn("You have unsaved data!");
+                    return confirm("You have unsaved data! Continue?");
+                }
+                return false;
             }
-            return false;
-        }
-    })
-    .add('hello/(:any)', function (name) {
-        console.log('Hello, ' + name, this.state);
-        document.getElementById('app').innerHTML = 'Hello, ' + name;
-    })
-    .add('about', function () {
-        console.log('About Page');
-        document.getElementById('app').innerHTML = 'About Page';
-    })
-    .remove('about')
-    .check()
-    .addUriListener()
-    .navigateTo('hello/World', {foo: "bar"})
-    .refresh();
-
-    $('a').on('click', (event) => {
-        // Block browser page load
-        event.preventDefault();
-        
-        // Highlight Active Menu on Click
-        const target = $(event.target);
-        $('.item').removeClass('active');
-        target.addClass('active');
-        
-        // Navigate to clicked url
-        const href = target.attr('href');
-        const path = href.substr(href.lastIndexOf(''));
-        router.navigateTo(path);
-    });
-
+        })
+        .add('hello/(:any)', function (name) {
+            console.log('Hello, ' + name, this.state);
+            document.getElementById('title').innerHTML = 'Hello, ' + name;
+        })
+        .add('about', function () {
+            console.log('About Page');
+            document.getElementById('title').innerHTML = 'About Page';
+        })
+        .remove('about')
+        .check()
+        .addUriListener()
+        .navigateTo('hello/World', {foo: "bar"})
+        .refresh();
 window.router = router;
+
 
 
 // window.addEventListener('load', () => {
