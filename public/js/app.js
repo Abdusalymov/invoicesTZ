@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
     const mainTemplate = Handlebars.compile($('#main-template').html());
   
     const router = new Router({
-        mode: 'hash',
+        mode: 'history',
         // root: '/index.htm',
         page404: (path) => {
           const html = errorTemplate({
