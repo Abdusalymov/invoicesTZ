@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
   
     const router = new Router({
         mode: 'history',
-        // root: '/index.htm',
+        root: '/invoicesTZ/public',
         page404: (path) => {
           const html = errorTemplate({
             color: 'yellow',
