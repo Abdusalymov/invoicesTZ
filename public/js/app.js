@@ -1,3 +1,6 @@
+const el = $('#app');
+const mainTemplate = Handlebars.compile($('#main-template').html());
+
 var router = new Router({
     mode: 'hash',
     root: '/index.html',
@@ -12,8 +15,9 @@ var router = new Router({
 });
 router
         .add('', function () {
-            console.log('Home page');
-            document.getElementById('app').innerHTML = "Home Page";
+            console.log('Home page!!!!');
+            let html = mainTemplate();
+            el.html(html);
         })
         .add('search', function () {
             console.log('Search Page');
