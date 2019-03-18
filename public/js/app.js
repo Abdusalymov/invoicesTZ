@@ -18,7 +18,7 @@ window.addEventListener('load', () => {
         },
       });
       
-      router.add('/invoicesTZ/public', () => {
+      router.add('/', () => {
         let html = mainTemplate();
         el.html(html);
       });
