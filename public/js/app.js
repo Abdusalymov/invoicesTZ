@@ -1,10 +1,8 @@
 window.addEventListener('load', () => {
     const el = $('#app');
   
-    // Compile Handlebar Templates
     const errorTemplate = Handlebars.compile($('#error-template').html());
     const ratesTemplate = Handlebars.compile($('#rates-template').html());
-    // const exchangeTemplate = Handlebars.compile($('#exchange-template').html());
     const mainTemplate = Handlebars.compile($('#main-template').html());
   
     const router = new Router({
@@ -29,11 +27,6 @@ window.addEventListener('load', () => {
         let html = ratesTemplate();
         el.html(html);
       });
-      
-    //   router.add('/historical', () => {
-    //     let html = historicalTemplate();
-    //     el.html(html);
-    //   });
       
       // Navigate app to current url
       router.navigateTo(window.location.pathname);
