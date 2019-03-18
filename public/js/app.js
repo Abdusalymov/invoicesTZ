@@ -1,5 +1,6 @@
 const el = $('#app');
 const mainTemplate = Handlebars.compile($('#main-template').html());
+const ratesTemplate = Handlebars.compile($('#rates-template').html());
 
 var router = new Router({
     mode: 'hash',
@@ -19,6 +20,11 @@ router
             let html = mainTemplate();
             el.html(html);
         })
+        .add('rates', function () {
+            console.log('Rates page!!!!');
+            let html = ratesTemplate();
+            el.html(html);
+        })
         .add('search', function () {
             console.log('Search Page');
             document.getElementById('app').innerHTML = 'Search for: ' + this.query.q;
@@ -36,14 +42,31 @@ router
             document.getElementById('app').innerHTML = 'Hello, ' + name;
         })
         .add('about', function () {
-            console.log('About Page');
+            console.log('About Page!!!');
             document.getElementById('app').innerHTML = 'About Page';
         })
         .remove('about')
         .check()
         .addUriListener()
-        .navigateTo('hello/World', {foo: "bar"})
+        // .navigateTo('hello/World', {foo: "bar"})
         .refresh();
+
+        $('a').on('click', function(event){
+            // Block browser page load
+            event.preventDefault();
+            console.log('event work!!!')
+            // Highlight Active Menu on Click
+            const target = $(event.target);
+            // $('.item').removeClass('active');
+            // target.addClass('active');
+            
+            // Navigate to clicked url
+            const href = target.attr('href');
+            console.log(href);
+            // const path = href.substr(href.lastIndexOf('/'));
+            // console.log(path);
+            router.navigateTo(href);
+        });
 window.router = router;
 
 
