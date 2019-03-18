@@ -99,7 +99,7 @@
 
   <!-- JS Library Dependencies -->
   <script src="js/jquery.min.js"></script>
-  <!-- <script src="js/axios.min.js"></script> -->
+  <script src="js/axios.min.js"></script>
   <script src="js/handlebars.min.js"></script>
   <script src="js/vanilla-router.min.js"></script>
   <script src="js/app.js"></script> 
@@ -108,6 +108,8 @@
   <script type="text/javascript" language="javascript">
     $(function() {
         $('form').submit(function(e) {
+            e.preventDefault(); 
+
             var $form = $(this);
             $.ajax({
                 type: $form.attr('method'),
@@ -119,8 +121,6 @@
             }).fail(function() {
                 console.log('fail');
             });
-            //отмена действия по умолчанию для кнопки submit
-            e.preventDefault(); 
         });
     });
   </script>
