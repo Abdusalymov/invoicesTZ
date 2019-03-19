@@ -2,6 +2,7 @@ $(function() {
     const el = $('#app');
     const mainTemplate = Handlebars.compile($('#main-template').html());
     const createInvoiceTemplate = Handlebars.compile($('#create-invoice-template').html());
+    const errorTemplate = Handlebars.compile($('#error-template').html());
 
     var router = new Router({
         mode: 'hash',
@@ -13,6 +14,8 @@ $(function() {
         },
         page404: function (path) {
             console.log('"/' + path + '" Page not found');
+            let html = errorTemplate();
+            el.html(html);
         }
     });
     router
@@ -20,7 +23,7 @@ $(function() {
                 console.log('Home page!!!!');
                 let html = mainTemplate();
                 el.html(html);
-                getInvoices();
+                $.getInvoices();
 
             })
             .add('create', function () {
@@ -40,12 +43,14 @@ $(function() {
                 const href = target.attr('href');
                 router.navigateTo(href);
             });
+
+
     window.router = router;
 
 })
 
 
-function getInvoices(){
+$.getInvoices = function (){
     $.ajax({
         url: "https://json-server-invoices.herokuapp.com/invoices",
         type: "GET",
@@ -53,16 +58,31 @@ function getInvoices(){
             console.log('fail getinvoices');
         },
         success: function(data){
-            $('#example').append(
-                `<tbody>${data.map(n =>
-                    `<tr>
-                    <td>${n.date_created}</td>
-                    <td>INV-${n.number}</td>
-                    <td>${n.date_supply}</td>
-                    <td>${n.comment}</td>
-                    </tr>`).join('')}
-                </tbody>`
-            );
+            removeOldListInvoices()
+            updateListInvoices(data);
         },
     });
+}
+
+function removeOldListInvoices(){
+    $( "#tbody" ).remove();
+}
+
+
+function updateListInvoices(data){
+    $('#table-invoices').append(
+        `<tbody id="tbody">${data.map(n =>
+            `<tr>
+            <td>${n.date_created}</td>
+            <td>INV-${n.number}</td>
+            <td>${n.date_supply}</td>
+            <td>${n.comment}</td>
+            <td>
+                <button type="button" class="del btn btn-primary" id=${n.id}>
+                    Delete
+                </button>
+            </td>
+            </tr>`).join('')}
+        </tbody>`
+    );
 }
